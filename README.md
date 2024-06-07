@@ -28,48 +28,45 @@ Install the required dependencies:
 
 Usage
 Navigate to the project directory:
+**cd Survey_Cloudurity**
 
-cd Survey_Cloudurity
 Set up the Flask environment variables:
+**export FLASK_APP=app.py
+export FLASK_ENV=development**
 
-export FLASK_APP=app.py
-export FLASK_ENV=development
 Initialize the database:
-
-flask db init
+**flask db init
 flask db migrate -m "Initial migration"
-flask db upgrade
+flask db upgrade**
+
 Run the application:
-
-flask run
-Access the application in your web browser at http://localhost:5000.
-
-
+**flask run**
+**Access the application in your web browser at http://localhost:5000.**
 
 YOUR ALLOWED TO CREATE A VIRTUAL ENVIRONMENT AND PERFORM THE CODING TASK
 commands for creating virtual environment :
 
 install Virtualenv (if not already installed):
-pip install virtualenv
+**pip install virtualenv**
 
 Navigate to Your Project Directory:
 Open a terminal or command prompt and navigate to the directory where you want to create the virtual environment. For example:
-cd /path/to/your/project/directory
+**cd /path/to/your/project/directory**
 
 Create a Virtual Environment:
 Run the following command to create a virtual environment named venv:
 virtualenv venv
 
 If you're using Python 3 and want to specify the Python version:
-virtualenv -p python3 venv
+**virtualenv -p python3 venv**
 
 
 Activate the Virtual Environment:
 On Windows:
-venv\Scripts\activate
+**venv\Scripts\activate**
 
 On macOS and Linux:
-source venv/bin/activate
+**source venv/bin/activate**
 
 Verify Activation:
 Once activated, the command prompt or terminal should show the name of the virtual environment at the beginning of each line.
@@ -79,6 +76,6 @@ Now, you can install the necessary packages for your project using pip, and they
 
 Deactivate the Virtual Environment:
 To deactivate the virtual environment and return to the global Python environment, simply run:
-deactivate
+**deactivate**
 
-Remember to activate the virtual environment every time you work on your project use: venv\Scripts\activate
+Remember to activate the virtual environment every time you work on your project **use: venv\Scripts\activate**
