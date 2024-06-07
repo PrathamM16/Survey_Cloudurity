@@ -1,7 +1,7 @@
 PROBLEM STATEMENT
 ![image](https://github.com/PrathamM16/Survey_Cloudurity/assets/121935421/eebb3422-178c-42b7-a237-8625f550cbd6)
 
-
+Note :I have run this code inside virtual environment 
 
 # Survey Cloudurity
 
