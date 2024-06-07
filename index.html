@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Available Surveys</h2>
+    <ul class="survey-list">
+        {% for survey in surveys %}
+        <li class="survey-item">
+            <a href="{{ url_for('survey', survey_id=survey.id) }}" class="survey-link">{{ survey.title }}</a>
+            <span class="survey-date"> - ends on {{ survey.end_date.strftime('%Y-%m-%d') }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

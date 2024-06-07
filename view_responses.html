@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Responses for Survey: {{ survey.title }}</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Responder</th>
+                {% for question in questions %}
+                    <th>{{ question.question_text }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for response in responses %}
+                <tr>
+                    <td>{{ response.responder_id or 'Anonymous' }}</td>
+                    {% for question in questions %}
+                        <td>
+                            {% if question.question_type == 'multiple_choice' %}
+                                {% for answer in response.answers %}
+                                    {% if answer.question_id == question.id %}
+                                        {{ answer.choice_id }}
+                                    {% endif %}
+                                {% endfor %}
+                            {% elif question.question_type == 'free_form' %}
+                                {% for answer in response.answers %}
+                                    {% if answer.question_id == question.id %}
+                                        {{ answer.answer_text }}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

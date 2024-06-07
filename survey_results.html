@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Results</title>
+</head>
+<body>
+    <h1>Survey Results - {{ survey.title }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Choices</th>
+                <th>Responses</th>
+                <th>Text Responses</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for question in questions %}
+                <tr>
+                    <td>{{ question.question_text }}</td>
+                    <td>
+                        {% if question.question_type == 'multiple_choice' %}
+                            {% for choice in question.choices.split(',') %}
+                                {{ choice }}<br>
+                            {% endfor %}
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% for choice_id, count in summary[question.id].items() if choice_id != 'text_response' %}
+                            {{ count }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>{{ summary[question.id]['text_response'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

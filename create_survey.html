@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Create a New Survey</h2>
+    <form method="POST" id="surveyForm">
+        <div>
+            <label>Title:</label>
+            <input type="text" name="title">
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea name="description"></textarea>
+        </div>
+        <div>
+            <label>End Date:</label>
+            <input type="date" name="end_date" id="end_date" required>
+        </div>
+        <div id="questions">
+            <div>
+                <label>Question 1:</label>
+                <input type="text" name="questions">
+                <select name="question_types">
+                    <option value="multiple_choice">Multiple Choice</option>
+                    <option value="free_form">Free Form</option>
+                </select>
+                <input type="text" name="choices" placeholder="Comma-separated choices for multiple choice">
+            </div>
+        </div>
+        <button type="button" onclick="addQuestion()">Add Question</button>
+        <button type="submit">Create Survey</button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('surveyForm').addEventListener('submit', function(event) {
+                const endDateInput = document.getElementById('end_date');
+                const endDate = endDateInput.value;
+                const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+                if (!dateRegex.test(endDate)) {
+                    alert('Please enter a valid end date in the format YYYY-MM-DD.');
+                    event.preventDefault(); // Prevent form submission
+                }
+            });
+        });
+
+        let questionCount = 1;
+        function addQuestion() {
+            questionCount++;
+            const questionsDiv = document.getElementById('questions');
+            const newQuestion = document.createElement('div');
+            newQuestion.innerHTML = `
+                <label>Question ${questionCount}:</label>
+                <input type="text" name="questions">
+                <select name="question_types">
+                    <option value="multiple_choice">Multiple Choice</option>
+                    <option value="free_form">Free Form</option>
+                </select>
+                <input type="text" name="choices" placeholder="Comma-separated choices for multiple choice">
+            `;
+            questionsDiv.appendChild(newQuestion);
+        }
+    </script>
+{% endblock %}

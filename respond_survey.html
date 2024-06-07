@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>{{ survey.title }}</h2>
+    <p>{{ survey.description }}</p>
+    <form method="POST">
+        {% for question in survey.questions %}
+            <div>
+                <label>{{ question.question_text }}</label>
+                {% if question.question_type == 'multiple_choice' %}
+                    {% for choice in question.choices.split(',') %}
+                        <div>
+                            <input type="radio" name="question_{{ question.id }}" value="{{ choice }}">{{ choice }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <input type="text" name="question_{{ question.id }}">
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit Response</button>
+    </form>
+{% endblock %}

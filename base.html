@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <title>Survey Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Additional styles specific to the base template */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- Navigation links -->
+        <a href="{{ url_for('index') }}">Home</a>
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('create_survey') }}">Create Survey</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% if survey and current_user.id == survey.creator_id %}
+                <a href="{{ url_for('survey_summary', survey_id=survey.id) }}">Survey Summary</a>
+            {% endif %}
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Survey Tool. All rights reserved.
+    </footer>
+</body>
+</html>
